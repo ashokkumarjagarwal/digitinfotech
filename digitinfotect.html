@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Digit Infotech</title>
+  <style>
+    :root{
+      --accent:#0a3d62;
+      --muted:#6b7280;
+      --bg:#f7f8fb;
+      --card:#ffffff;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background:var(--bg);
+      color:#111827;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+    }
+
+    /* Header */
+    header.site-header{
+      background: linear-gradient(180deg, #ffffff 0%, #fffffffb 100%);
+      border-bottom:1px solid rgba(15,23,42,0.04);
+      padding:18px 20px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      flex-wrap:wrap;
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:14px;
+    }
+    /* Logo pill ensures contrast for dark logos */
+    .logo-pill{
+      background:var(--card);
+      padding:8px 12px;
+      border-radius:12px;
+      display:flex;
+      align-items:center;
+      gap:12px;
+      box-shadow:0 6px 18px rgba(12,18,31,0.06);
+      border:1px solid rgba(10,61,98,0.06);
+    }
+    .logo-pill img{
+      display:block;
+      max-height:64px;
+      width:auto;
+      object-fit:contain;
+    }
+    .brand-text{
+      display:flex;
+      flex-direction:column;
+      line-height:1;
+    }
+    .brand-text h1{
+      margin:0;
+      font-size:20px;
+      color:var(--accent);
+      letter-spacing:0.2px;
+    }
+    .brand-text p{
+      margin:0;
+      font-size:12px;
+      color:var(--muted);
+    }
+
+    /* Controls */
+    .header-controls{
+      display:flex;
+      gap:10px;
+      align-items:center;
+    }
+    .file-input{
+      display:flex;
+      gap:8px;
+      align-items:center;
+      background:transparent;
+    }
+    .btn{
+      background:var(--accent);
+      color:white;
+      border:none;
+      padding:8px 14px;
+      border-radius:8px;
+      cursor:pointer;
+      font-weight:600;
+    }
+    .btn.secondary{
+      background:transparent;
+      color:var(--accent);
+      border:1px solid rgba(10,61,98,0.12);
+    }
+
+    /* Main content */
+    main{padding:36px 20px; max-width:1100px; margin:0 auto;}
+    .hero{
+      display:flex;
+      gap:28px;
+      align-items:center;
+      justify-content:space-between;
+      flex-wrap:wrap;
+      margin-bottom:28px;
+    }
+    .hero-left{flex:1; min-width:260px}
+    .hero-left h2{color:var(--accent); margin:0 0 10px; font-size:28px}
+    .hero-left p{margin:0 0 18px; color:var(--muted)}
+    .hero-actions{display:flex; gap:12px; flex-wrap:wrap}
+    .card-row{display:flex; gap:18px; flex-wrap:wrap; justify-content:center; margin-bottom:28px}
+    .service-card{
+      background:var(--card);
+      padding:18px;
+      border-radius:12px;
+      width:260px;
+      box-shadow:0 6px 18px rgba(12,18,31,0.06);
+      border:1px solid rgba(12,18,31,0.04);
+      text-align:left;
+    }
+    .service-card h3{margin:0 0 8px; color:#0b3a5a}
+    .service-card p{margin:0; color:var(--muted); font-size:14px}
+
+    /* Contact */
+    .contact{
+      background:linear-gradient(180deg,#ffffff,#fbfdff);
+      padding:20px;
+      border-radius:12px;
+      display:flex;
+      gap:20px;
+      align-items:center;
+      justify-content:space-between;
+      flex-wrap:wrap;
+      border:1px solid rgba(10,61,98,0.04);
+    }
+    .contact .left{min-width:220px}
+    .contact .right{display:flex; gap:12px; align-items:center; flex-wrap:wrap}
+
+    footer{
+      margin-top:28px;
+      padding:18px 20px;
+      text-align:center;
+      color:var(--muted);
+      font-size:13px;
+    }
+
+    /* Responsive */
+    @media (max-width:720px){
+      .hero{flex-direction:column; align-items:flex-start}
+      .logo-pill img{max-height:56px}
+    }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="brand">
+      <div class="logo-pill" aria-hidden="true">
+        <!-- Logo preview: leave src empty initially; user can upload to preview -->
+        <img id="logoPreview" src="digit-infotech-logo.png" alt="Digit Infotech logo preview">
+      </div>
+
+      <div class="brand-text">
+        <h1>Digit Infotech</h1>
+        <p>Service-based project development & hiring</p>
+      </div>
+    </div>
+
+    <div class="header-controls" aria-hidden="false">
+      <label style="display:flex;align-items:center;gap:8px;">
+        <input id="logoInput" type="file" accept="image/*" style="display:none">
+      </label>
+      <button class="btn" onclick="downloadProject()">Download Sample Project</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" aria-labelledby="about-heading">
+      <div class="hero-left">
+        <h2 id="about-heading">We build projects that scale</h2>
+        <p>Digit Infotech is a service-based software company focused on delivering custom projects, end-to-end development, and hiring skilled teams for your product needs.</p>
+        <div class="hero-actions">
+          <button class="btn" onclick="scrollToContact()">Hire Us</button>
+          <button class="btn secondary" onclick="downloadProject()">Download Project</button>
+        </div>
+      </div>
+
+      <div style="min-width:260px; max-width:420px; text-align:center;">
+        <div style="background:linear-gradient(135deg,#eef7ff,#fff7ef); padding:18px; border-radius:12px; box-shadow:0 6px 18px rgba(12,18,31,0.04);">
+          <strong style="display:block; color:var(--accent); font-size:18px; margin-bottom:8px;">Our Approach</strong>
+          <p style="margin:0; color:var(--muted)">Discovery → Design → Build → Deploy → Support</p>
+        </div>
+      </div>
+    </section>
+
+    <section aria-labelledby="services-heading">
+      <h3 id="services-heading" style="color:var(--accent); text-align:center; margin-bottom:16px;">Our Services</h3>
+      <div class="card-row">
+        <div class="service-card">
+          <h3>Web & Mobile Development</h3>
+          <p>Responsive web apps, progressive web apps, and native/hybrid mobile solutions.</p>
+        </div>
+        <div class="service-card">
+          <h3>Cloud & DevOps</h3>
+          <p>Cloud architecture, CI/CD pipelines, containerization, and managed services.</p>
+        </div>
+        <div class="service-card">
+          <h3>AI & Automation</h3>
+          <p>Intelligent automation, data pipelines, and ML model integration.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" style="margin-top:18px;" aria-labelledby="contact-heading">
+      <h3 id="contact-heading" style="color:var(--accent); text-align:center; margin-bottom:12px;">Contact Us</h3>
+      <div class="contact">
+        <div class="left">
+          <strong>Address</strong>
+          <div style="color:var(--muted); margin-top:6px;">57C Avadh Vihar, Jagatpura</div>
+          <div style="margin-top:10px; color:var(--muted);">Email: contact@digitinfotech.com</div>
+          <div style="color:var(--muted); margin-top:6px;">Phone: +91-9876543210</div>
+        </div>
+
+        <div class="right">
+          <form id="hireForm" onsubmit="submitForm(event)" style="display:flex; gap:8px; flex-direction:column; min-width:260px; max-width:420px;">
+            <input name="name" placeholder="Your name" required style="padding:10px; border-radius:8px; border:1px solid rgba(12,18,31,0.06)">
+            <input name="email" type="email" placeholder="Email" required style="padding:10px; border-radius:8px; border:1px solid rgba(12,18,31,0.06)">
+            <textarea name="details" placeholder="Project details" rows="3" style="padding:10px; border-radius:8px; border:1px solid rgba(12,18,31,0.06)"></textarea>
+            <div style="display:flex; gap:8px;">
+              <button class="btn" type="submit">Send Request</button>
+              <button class="btn secondary" type="button" onclick="resetForm()">Reset</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      &copy; <span id="year"></span> Digit Infotech. All rights reserved.
+    </footer>
+  </main>
+
+  <script>
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Logo upload preview (no filename shown in HTML)
+    const logoInput = document.getElementById('logoInput');
+    const logoPreview = document.getElementById('logoPreview');
+
+    logoInput.addEventListener('change', function(){
+      const file = this.files && this.files[0];
+      if(!file) return;
+      const reader = new FileReader();
+      reader.onload = function(e){
+        logoPreview.src = e.target.result;
+        logoPreview.alt = 'Uploaded logo';
+      };
+      reader.readAsDataURL(file);
+    });
+
+    // Download sample project
+    function downloadProject(){
+      const content = [
+        "Digit Infotech - Sample Project",
+        "",
+        "Project: Starter Web App",
+        "Description: A minimal starter project to demonstrate structure and deployment.",
+        "",
+        "Files:",
+        "- index.html",
+        "- styles.css",
+        "- app.js",
+        "",
+        "Contact: contact@digitinfotech.com"
+      ].join("\\n");
+
+      const blob = new Blob([content], {type: 'text/plain'});
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = "DigitInfotech_SampleProject.txt";
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(a.href);
+    }
+
+    // Simple form handling (demo only)
+    function submitForm(e){
+      e.preventDefault();
+      const form = e.target;
+      const data = {
+        name: form.name.value.trim(),
+        email: form.email.value.trim(),
+        details: form.details.value.trim()
+      };
+      // Demo: show a friendly confirmation (replace with real submission)
+      alert('Thanks, ' + (data.name || 'there') + '! Your project request has been received.');
+      form.reset();
+    }
+    function resetForm(){ document.getElementById('hireForm').reset(); }
+
+    // Scroll to contact
+    function scrollToContact(){
+      document.getElementById('contact').scrollIntoView({behavior:'smooth'});
+    }
+  </script>
+</body>
+</html>
